@@ -4,6 +4,7 @@ using BussyBulky.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BussyBulky.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240122230643_addProductImageToDb")]
+    partial class addProductImageToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -681,7 +684,7 @@ namespace BussyBulky.DataAccess.Migrations
             modelBuilder.Entity("BussyBulky.Models.ProductImage", b =>
                 {
                     b.HasOne("BussyBulky.Models.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany("productImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -768,7 +771,7 @@ namespace BussyBulky.DataAccess.Migrations
 
             modelBuilder.Entity("BussyBulky.Models.Product", b =>
                 {
-                    b.Navigation("ProductImages");
+                    b.Navigation("productImages");
                 });
 #pragma warning restore 612, 618
         }

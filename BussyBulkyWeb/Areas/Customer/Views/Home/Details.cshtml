@@ -22,7 +22,51 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-                        <img src="@Model.Product.ImageUrl" width="100%" class="rounded" />
+                        
+                        @if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count > 0)
+                        {
+                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-indicators">
+
+                                    @foreach(var imageWithIndex in 
+                                    Model.Product.ProductImages
+                                    .Select((image,index) => new { Image=image, Index = index }))
+                                    {
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index" 
+                                        class="@(imageWithIndex.Index==0?"active":"")" aria-label="Slide 1"></button>
+                                    }
+                                </div>
+                                <div class="carousel-inner">
+                                    @foreach (var imageWithIndex in
+                                    Model.Product.ProductImages
+                                   .Select((image, index) => new { Image = image, Index = index }))
+                                    {
+                                    <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
+                                        <img class="d-block w-100" src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="...">
+                                    </div>
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+
+                        }
+
+
+
+
+
+
+
+
+
+
                     </div>
                     <div class="col-12 col-lg-6 offset-lg-1">
 

@@ -8,5 +8,8 @@
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="SendGrid" Version="9.29.1" />
+	</ItemGroup>
 
 </Project>

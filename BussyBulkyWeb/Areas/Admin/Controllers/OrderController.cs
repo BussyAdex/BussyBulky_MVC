@@ -134,8 +134,8 @@ namespace BussyBulkyWeb.Areas.Admin.Controllers
 				.GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
 			//Stripe logic
-			var domain = "https://localhost:7074/";
-			var options = new SessionCreateOptions
+			var domain = Request.Scheme + "://" + Request.Host.Value + "/";
+            var options = new SessionCreateOptions
 			{
 				SuccessUrl = domain + $"admin/order/PaymentConfirmation?orderHeaderId={OrderVM.OrderHeader.Id}",
 				CancelUrl = domain + $"admin/order/details?orderId={OrderVM.OrderHeader.Id}",
